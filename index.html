@@ -1,54 +1,119 @@
-<!DOCTYPE html>
 <html>
 <head>
-	<title>Acruxray's blog</title>
-	<meta charset="utf=8">
-	<style>
-		body{
-			margin: 0 auto;
-			padding: 20px;
-			max-width: 640px;
-			font:16px/1.7em Ubuntu, Arial, Sans-serif;
-			color:#444;
-			background: #fcfcfc;
-			box-sizing:border-box;
-		}
-		h1{
-			text-align: center;
-			font-weight:normal;
-		}
-		h3{
-			font-weight:normal;
-		}
-		h3 a{
-			color: #000;
-		}
-		h3 i{
-			font-size: 13px;
-		}
-		small{
-			font-size:18px;
-			color:#999;
-		}
-		i{
-			display:block;
-			font-size:85%;
-			color:#999;
-		}
-		article{
-			padding-bottom:20px;
-		}
+	<title>Установка и настройнка сервера на VDS</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+	<link href="prism.css" rel="stylesheet">
+	<style type="text/css">
+
+	.valign{
+		width: 100%;
+	}
+
+	html{
+		font-size: 16px;
+	}
+
+	body{
+		background: #fafafa;
+	}
+	h1{
+		font-size: 1.5rem;
+	}
+	h2{
+		font-size: 1.3rem;
+	}
+	h3{
+		font-size: 1.1rem;
+	}
+	.button-collapses{
+		position: fixed;
+		bottom: 1.6rem;
+		right: 1rem;
+	}
+	.base{
+		cursor: pointer;
+	}
+	.holster{
+		height: 100%;
+	}
+
+	#info_b{
+		display: none;
+	}
+	
+
 	</style>
 </head>
 <body>
-	<h1>Acruxray projects<br><small>thoughts about development</small></h1>
-	<article>
-		<h3><a href="#">Limited network</a><i>FEB'16 2015, MON</i></h3>
-		<p>Due difficult situation with internet access - can view caсhed pages only. This expirience began to change perception of the world. This is the time to fix what information is really needed for everyday life.</p>
-	</article>
-	<article>
-		<h3><a href="#">The end of episode</a><i>FEB'10 2015, TUE</i></h3>
-		<p>The events of recent months have made it clear that the old logic of doing business - has exhausted itself!</p>
-	</article>
+
+<ul id="slide-out" class="side-nav">
+	<li><a class="subheader">Категории:</a></li>
+	<li><div class="divider"></div></li>
+	<li><a class="base" data-link="grub">Grub</a></li>
+	<li><a class="base" data-link="install">Установка и удаление программ</a></li>
+	<li><a class="base" data-link="server">Server setup</a></li>
+	<li><a class="base" data-link="apache">Apache</a></li>
+	<li><a class="base" data-link="ssl-apache">SSL для Apache</a></li>
+	<li><a class="base" data-link="nginx">Nxinx</a></li>
+	<li><a class="base" data-link="ssl-nginx">SSL для Nginx</a></li>
+	<li><a class="base" data-link="nginx-apache">Связка Nxinx+Apache+SSL</a></li>
+	<li><a class="base" data-link="dump">Дамп базы данных</a></li>
+	<li><a class="base" data-link="bin">Установка файлов .bin</a></li>
+	<li><a class="base" data-link="multimedia">Мультимедиа</a></li>
+	<li><a class="base" data-link="graphical">Графическая среда</a></li>
+	<li><a class="base" data-link="fonts">Шрифты</a></li>
+	<li><a class="base" data-link="md5">MD5 сумма</a></li>
+	<li><a class="base" data-link="formatting">Форматирование</a></li>
+	<li><a class="base" data-link="mail">Функция mail()</a></li>
+	<li><a class="base" data-link="cron">Cron</a></li>
+	<li><a class="base" data-link="screensaver">Скринсейвер</a></li>
+	<li><a class="base" data-link="energy-saving">Энергосбережение</a></li>
+	<li><a class="base" data-link="keyboard-layout">Раскладка клавиатуры</a></li>
+	<li><a class="base" data-link="video">Проблемы с видео</a></li>
+	<li><a class="base" data-link="deb">Установка .deb пакетов</a></li>
+	<li><a class="base" data-link="skype">Skype</a></li>
+	<li><a class="base" data-link="ftp">FTP</a></li>
+	<li><a class="base" data-link="symlink">Symlink</a></li>
+	<li><a class="base" data-link="backup">Backup</a></li>
+	<li><a class="base" data-link="ssh">Доступ по SSH</a></li>
+</ul>
+<a data-activates="slide-out" class="button-collapses btn-floating btn-large waves-effect waves-light amber darken-2"><i class="material-icons">format_list_bulleted</i></a>
+
+<div id="main" class="holster center-align valign-wrapper">
+	<div class="valign">
+		<h1><i class="material-icons" style="font-size:3rem;vertical-align:middle;">code</i> Acruxray snippets</h1>
+	</div>
+</div>
+
+<div id="info_b" class="row">
+	<div id="info" class="col s12 m10 l10 offset-l1 offset-m1"></div>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+<script type="text/javascript" src="prism.js"></script>
+<script type="text/javascript">
+
+$('.button-collapses').sideNav({
+	closeOnClick: true
+});
+
+$('.base').click(function(){
+	var name = $(this).data('link');
+
+	$('#info').load('base/'+name+'.html');
+
+	setTimeout(function() { Prism.highlightAll() }, 150);
+
+	$('#main').css('display','none');
+	$('#info_b').css('display','block');
+
+});
+
+</script>
+
 </body>
 </html>

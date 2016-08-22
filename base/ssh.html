@@ -1,0 +1,30 @@
+<h1 class="center-align">Доступ по SSH (Secure Shell)</h1>
+<h2 class="center-align">Установка связки клиент-сервер:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo apt-get install ssh
+</xmp></code></pre>
+
+<h2 class="center-align">Перезапуск сервера:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo /etc/init.d/ssh restart
+# или:
+sudo service ssh restart
+</xmp></code></pre>
+
+<h2 class="center-align">Доступ к удалённой машине:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>slogin username@servername
+</xmp></code></pre>
+
+<h2 class="center-align">Удалённый запуск графических приложений на сервере:</h2>
+
+<h3 class="center-align">На сервере в файле /etc/ssh/sshd_config выставляем параметр:</h3>
+
+<pre class="card-panel"><code class="language-bash"><xmp>ForwardX11 yes
+</xmp></code></pre>
+
+<h3 class="center-align">На клиенте в файле /etc/ssh/ssh_config выставляем параметры:</h3>
+
+<pre class="card-panel"><code class="language-bash"><xmp>ForwardAgent yes
+ForwardX11 yes
+</xmp></code></pre>

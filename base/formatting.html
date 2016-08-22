@@ -1,0 +1,44 @@
+<h1 class="center-align">Форматирование USB-flash</h1>
+<h2 class="center-align">Получение списка подключённых дисков</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo fdisk -l
+
+# результат вывода результата команды будет таким:
+
+Диск /dev/sda: 40.0 ГБ, 40007761920 байт
+255 heads, 63 sectors/track, 4864 cylinders
+Units = цилиндры of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0xecb2ecb2
+
+Устр-во Загр     Начало       Конец       Блоки   Id  Система
+/dev/sda1   *           1        1567    12579808+   7  HPFS/NTFS
+Раздел 1 не заканчивается на границе цилиндра.
+/dev/sda2            4775        4864      722894+   f  W95 расшир. (LBA)
+Раздел 2 не заканчивается на границе цилиндра.
+/dev/sda3            1567        4774    25765888   83  Linux
+/dev/sda5            4775        4864      722893+  82  Linux своп / Solaris
+
+Пункты таблицы разделов расположены не в дисковом порядке
+
+Диск /dev/sdb: 4009 МБ, 4009754624 байт
+145 heads, 48 sectors/track, 1125 cylinders
+Units = цилиндры of 6960 * 512 = 3563520 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0xc3072e18
+
+Устр-во Загр     Начало       Конец       Блоки   Id  Система
+/dev/sdb1   *           1        1126     3915752    b  W95 FAT32
+</xmp></code></pre>
+
+<h2 class="center-align">Отмонтирование диска</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo umount /dev/sdb1
+</xmp></code></pre>
+
+<h2 class="center-align">Форматируем выбранный диск</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo mkdosfs -F 32 /dev/sdb1
+</xmp></code></pre>

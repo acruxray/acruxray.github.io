@@ -1,0 +1,39 @@
+<h1 class="center-align">Настройка работы функции mail()</h1>
+<h2 class="center-align">1. Установить ssmtp:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo apt-get install ssmtp
+</xmp></code></pre>
+
+<h2 class="center-align">2. В файле /etc/php5/apache2/php.ini заменить строку</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>;sendmail_path =
+# на
+sendmail_path = /usr/sbin/ssmtp -t
+</xmp></code></pre>
+
+<h2 class="center-align">3. В файле /etc/ssmtp/ssmtp.conf прописать настройки (на примере smtp.gmail.com)</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>FromLineOverride=YES
+UseSTARTTLS=YES
+root={обратный почтовый адрес}
+mailhub=smtp.gmail.com:587
+FromLineOverride=YES
+AuthUser={имя пользователя}@gmail.com
+AuthPass={пароль}
+# остальное закомментить (кроме hostname=***)
+</xmp></code></pre>
+
+<h2 class="center-align">4. Обезопасить доступ к /etc/ssmtp/ssmtp.conf (опционально):</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>adduser www-data mail
+chmod 2555 /usr/sbin/ssmtp
+chgrp mail /usr/sbin/ssmtp
+chmod 640 /etc/ssmtp/ssmtp.conf
+chown root:mail /etc/ssmtp/ssmtp.conf
+deluser www-data mail
+</xmp></code></pre>
+
+<h2 class="center-align">Перезапустить сервис</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo /etc/init.d/sendmail restart
+</xmp></code></pre>

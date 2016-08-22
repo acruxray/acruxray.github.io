@@ -1,0 +1,32 @@
+<h1 class="center-align">Nginx</h1>
+<h2 class="center-align">Установка сервера Nginx:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo apt-get install nginx
+</xmp></code></pre>
+
+<h2 class="center-align">В папке /etc/nginx/sites-available/ создаём конфигурационный файл example_config и записываем в него:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>server {
+	listen 80;
+	listen [::]:80;
+
+	server_name example.com;
+
+	root /var/www/example.com;
+	index index.html;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}
+</xmp></code></pre>
+
+<h2 class="center-align">Сохраняем симлинк в /etc/nginx/sites-enabled:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>ln -s /etc/nginx/sites-available/example_config /etc/nginx/sites-enabled/example_config
+</xmp></code></pre>
+
+<h2 class="center-align">Перезапуск сервера Nginx:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo /etc/init.d/nginx restart
+</xmp></code></pre>

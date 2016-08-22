@@ -1,0 +1,22 @@
+<h1 class="center-align">Доступ по HTTPS к сайтам на Apache (SSL)</h1>
+<h2 class="center-align">Активация mod_ssl:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo a2enmod ssl
+</xmp></code></pre>
+
+<h2 class="center-align">Включаем настройки HTTPS сайта по умолчанию:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo a2ensite default-ssl
+</xmp></code></pre>
+
+<h2 class="center-align">Редактируем файл с настройками HTTPS сайта по умолчанию /etc/apache2/sites-enabled/default-ssl.conf, указав в нём пути к вашим сертификатам:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>SSLCertificateFile	/home/someway/cert1.pem
+SSLCertificateKeyFile /home/someway/privkey1.pem
+SSLCertificateChainFile /home/someway/chain1.pem
+</xmp></code></pre>
+
+<h2 class="center-align">Перезапустить Apache:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo service apache2 restart
+</xmp></code></pre>

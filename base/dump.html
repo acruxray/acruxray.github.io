@@ -1,0 +1,44 @@
+<h1 class="center-align">Дамп базы данных MySQL</h1>
+<h2 class="center-align">Дамп базы данных mydb_forum на MySQL сервере</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>mysqldump -u[username] -p[password] [database] > [dump_name.sql] 
+# [username] – имя пользователя который имеет доступ к базе данных. 
+# [password] – пароль пользователя. 
+# [database] – имя базы данных. 
+# [dump_name.sql] – имя файла, дампа на выходе. 
+
+mysqldump -uadmin -pSuperPassword mydb_forum > mydb_forum.sql
+</xmp></code></pre>
+
+<h2 class="center-align">Восстановление полученного ранее дампа базы данных</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>mysql -uadmin -pSuperPassword mydb_forum < mydb_forum.sql
+</xmp></code></pre>
+
+<h2 class="center-align">Дамп всех БД которые находятся у вас на MySQL сервере</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>mysqldump -uAdmin -pMyPass --all-databases > all_databases.sql
+</xmp></code></pre>
+
+<h2 class="center-align">Бекап структуры базы данных</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>mysqldump --no-data --databases my_db1 my_db2 my_db3 > structurebackup.sql
+</xmp></code></pre>
+
+<h2 class="center-align">Cжатие данных</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>mysqldump -uAdmin -pSuperPass mydb | bzip2 -c > backup.sql.bz2
+mysqldump -uAdmin -pSuperPass mydb | gzip -c > backup.sql.gz
+</xmp></code></pre>
+
+<h2 class="center-align">Скачать дамп базы данных в нужной кодировке</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>mysqldump --user=mysql_user –password –default-character-set=cp1251 database > ./database.cp1251.sql 
+</xmp></code></pre>
+
+<h2 class="center-align">Далее сжимаем</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>gzip ./database.cp1251.sql
+# или: 
+bzip2 ./database.cp1251.sql
+</xmp></code></pre>

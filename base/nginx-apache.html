@@ -1,0 +1,98 @@
+<h1 class="center-align">Связка Nginx+Apache+SSL для отдельного сайта и Nginx+Apache для субдоменов</h1>
+<h2 class="center-align">Установка серверов:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo apt-get install apache2
+sudo apt-get install nginx
+</xmp></code></pre>
+
+<h2 class="center-align">В файле /etc/apache2/ports.conf переводим Apache на порт 81:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>Listen 81
+</xmp></code></pre>
+
+<h2 class="center-align">Во всех конфигах внутри /etc/apache2/sites-available так же изменяем номер порта:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp><VirtualHost *:81>
+</xmp></code></pre>
+
+<h2 class="center-align">В вайле /etc/nginx/sites-available/default прописываем:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp># default
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	# htaccess и htpasswd не отдаем (можно не использовать)
+    location ~ /\.ht {
+        deny  all;
+    }
+
+	location / {
+		proxy_pass          http://127.0.0.1:81;
+        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header    Host $http_host;
+	}
+}
+
+# other subdomains
+server {
+    listen 80;
+    server_name api.example.com  static.example.com;
+
+    # htaccess и htpasswd не отдаем (можно не использовать)
+    location ~ /\.ht {
+        deny  all;
+    }
+
+    location / {
+		proxy_pass          http://127.0.0.1:81;
+        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header    Host $http_host;
+	}
+}
+
+# Redirect to HTTPS  
+server {
+    listen 80;
+    server_name example.com  www.example.com;
+    return 301 https://example.com$request_uri;
+}
+
+# SSL block
+server {
+	listen 443 ssl http2;
+	server_name example.com;
+
+	ssl_certificate     /var/www/way_to_ssl/example.com/cert1.pem; # сертификат сервера
+	ssl_certificate_key /var/www/way_to_ssl/example.com/privkey1.pem; # ключ сервера
+	ssl_stapling_verify on;
+	resolver 135.84.56.8; # или 127.0.0.1 если используется локальный ip
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+	ssl_prefer_server_ciphers on;
+	ssl_ciphers EECDH+AES128:kEECDH:kEDH:-3DES:kRSA+AES128:kEDH+3DES:DES-CBC3-SHA:!RC4:!aNULL:!eNULL:!MD5:!EXPORT:!LOW:!SEED:!CAMELLIA:!IDEA:!PSK:!SRP:!SSLv2;
+	add_header Strict-Transport-Security 'max-age=31536000';
+
+	# htaccess и htpasswd не отдаем (можно не использовать)
+	location ~ /\.ht {
+		deny  all;
+	}
+
+	# Static files location
+	location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|js|swf|txt|svg)$ {             
+		root   /var/www/example.com;
+	}
+
+	location / {
+		proxy_pass          http://127.0.0.1:81;
+		proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header    Host $http_host;
+	}
+
+}
+</xmp></code></pre>
+
+<h2 class="center-align">Перезапускаем сервера:</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo /etc/init.d/apache2 restart
+sudo /etc/init.d/nginx restart
+</xmp></code></pre>

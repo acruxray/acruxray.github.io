@@ -12,6 +12,19 @@ sudo apt-get install mysql-server
 sudo apt-get install php5-curl
 </xmp></code></pre>
 
+<h2 class="center-align">Если необходим PHP7</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo apt-get install php7.0-mysql php7.0-curl php7.0-json php7.0-cgi  php7.0 libapache2-mod-php7.0
+</xmp></code></pre>
+
+<h2 class="center-align">Возможность вывода ошибок</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp># в файле /etc/php/7.0/apache2/php.ini необходимо поменять значение
+display_errors = Off
+# на
+display_errors = On
+</xmp></code></pre>
+
 <h2 class="center-align">Перезапуск Apache</h2>
 
 <pre class="card-panel"><code class="language-bash"><xmp>sudo /etc/init.d/apache2 restart

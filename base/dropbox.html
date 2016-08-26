@@ -1,0 +1,32 @@
+<h1 class="center-align">Проблемы с Dropbox</h1>
+<h2 class="center-align">Отображение иконки Dropbox в системном трее</h2>
+
+<h3 class="center-align">1 вариант. Создать исполняемый файл и добавить его в автозагрузку:</h3>
+<pre class="card-panel"><code class="language-bash"><xmp>#!bin/bash
+
+dropbox stop && dbus-launch dropbox start
+</xmp></code></pre>
+
+<h3 class="center-align">2 вариант. В файле /usr/bin/dropbox внести изменения:</h3>
+<pre class="card-panel"><code class="language-bash"><xmp># создать новую строчку после "import os"
+
+os.environ['DBUS_SESSION_BUS_ADDRESS'] = ""
+</xmp></code></pre>
+
+<h3 class="center-align">Затем:</h3>
+<pre class="card-panel"><code class="language-bash"><xmp>dropbox stop
+dropbox start
+</xmp></code></pre>
+
+<h3 class="center-align">Информация</h3>
+<pre class="card-panel"><code class="language-bash"><xmp># http://askubuntu.com/questions/732816/xubuntu-dropbox-icon-fail
+</xmp></code></pre>
+
+<h2 class="center-align">Установка пдлагина Dropbox для контекстного меню</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo add-apt-repository ppa:xubuntu-dev/extras
+
+sudo apt-get update
+
+sudo apt-get install thunar-dropbox-plugin
+</xmp></code></pre>

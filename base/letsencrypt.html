@@ -1,0 +1,41 @@
+<h1 class="center-align">Установка сертификата LetsEncrypt</h1>
+<h2 class="center-align">Установка программного обеспечения</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>sudo apt-get install git
+mkdir ~/pro
+cd ~/pro
+git clone https://github.com/letsencrypt/letsencrypt
+cd letsencrypt
+</xmp></code></pre>
+
+
+<h2 class="center-align">Установка сертификата для домена в ручном режиме</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>./letsencrypt-auto certonly --webroot -w /var/www/mydomain.com/ -d mydomain.com -d www.mydomain.com
+</xmp></code></pre>
+
+<h2 class="center-align">Добавление сертификатов</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp># где необходимо можно прописать пути до сертификатов в конфигах серверов
+# privkey.pem — наш приватный ключ
+# cert.pem — сертификат сервера
+# chain.pem — корневой (root) и промежуточный (intermediate)
+# fullchain.pem — все необходимые нам сертификаты для настройки веб-сервера.
+# например для Apache
+SSLCertificateKeyFile /etc/letsencrypt/live/mydomain.com/privkey.pem
+SSLCertificateFile /etc/letsencrypt/live/mydomain.com/cert.pem
+SSLCertificateChainFile /etc/letsencrypt/live/mydomain.com/chain.pem
+
+# и перезагрузить сервер, наприммер Apache
+sudo service apache2 restart
+</xmp></code></pre>
+
+<h2 class="center-align">Продление сертификата</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>./letsencrypt-auto renew
+</xmp></code></pre>
+
+<h2 class="center-align">Установка в Cron</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>25 5 * * 4 /home/username/pro/letsencrypt/letsencrypt-auto renew >> /var/log/le-renew.log
+</xmp></code></pre>

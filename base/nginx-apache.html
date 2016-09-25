@@ -5,9 +5,17 @@
 sudo apt-get install nginx
 </xmp></code></pre>
 
-<h2 class="center-align">В файле /etc/apache2/ports.conf переводим Apache на порт 81:</h2>
+<h2 class="center-align">В файле /etc/apache2/ports.conf переводим Apache на порт 81 и ssl на порт 444:</h2>
 
 <pre class="card-panel"><code class="language-bash"><xmp>Listen 81
+
+<IfModule ssl_module>
+	Listen 443
+</IfModule>
+
+<IfModule mod_gnutls.c>
+	Listen 443
+</IfModule>
 </xmp></code></pre>
 
 <h2 class="center-align">Во всех конфигах внутри /etc/apache2/sites-available так же изменяем номер порта:</h2>

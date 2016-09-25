@@ -45,11 +45,21 @@
 	}
 	
 
+	header, main, footer {
+		padding-left: 300px;
+	}
+
+	@media only screen and (max-width : 992px) {
+		header, main, footer {
+			padding-left: 0;
+		}
+	}
+
 	</style>
 </head>
 <body>
 
-<ul id="slide-out" class="side-nav">
+<ul id="slide-out" class="side-nav fixed">
 	<li><a class="subheader">Категории:</a></li>
 	<li><div class="divider"></div></li>
 	<li><a class="base" data-link="grub">Grub</a></li>
@@ -84,8 +94,11 @@
 	<li><a class="base" data-link="desktop">Проблемы с Рабочим столом</a></li>
 	<li><a class="base" data-link="letsencrypt">LetsEncrypt</a></li>
 </ul>
-<a data-activates="slide-out" class="button-collapses btn-floating btn-large waves-effect waves-light amber darken-2"><i class="material-icons">format_list_bulleted</i></a>
+<a data-activates="slide-out" class="button-collapses hide-on-large-only btn-floating btn-large waves-effect waves-light amber darken-2"><i class="material-icons">format_list_bulleted</i></a>
 
+<header></header>
+
+<main>
 <div id="main" class="holster center-align valign-wrapper">
 	<div class="valign">
 		<h1><i class="material-icons" style="font-size:3rem;vertical-align:middle;">code</i> Acruxray snippets</h1>
@@ -96,17 +109,23 @@
 	<div id="info" class="col s12 m10 l10 offset-l1 offset-m1"></div>
 </div>
 
+<footer></footer>
+
+</main>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 <script type="text/javascript" src="prism.js"></script>
 <script type="text/javascript">
 
-$('.button-collapses').sideNav({
-	closeOnClick: true
-});
+$(".button-collapses").sideNav();
 
 $('.base').click(function(){
 	var name = $(this).data('link');
+
+	$("[data-link]").parent().removeClass('active');
+
+	$('[data-link='+name+']').parent().addClass('active');
 
 	$('#info').load('base/'+name+'.html');
 

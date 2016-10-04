@@ -71,7 +71,7 @@ server {
 	listen 443 ssl http2;
 	server_name example.com;
 
-	ssl_certificate     /var/www/way_to_ssl/example.com/cert1.pem; # сертификат сервера
+	ssl_certificate     /var/www/way_to_ssl/example.com/fullchain1.pem; # сертификат сервера
 	ssl_certificate_key /var/www/way_to_ssl/example.com/privkey1.pem; # ключ сервера
 	ssl_stapling_verify on;
 	resolver 135.84.56.8; # или 127.0.0.1 если используется локальный ip

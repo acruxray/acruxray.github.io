@@ -147,14 +147,14 @@ $('.base').click(function(){
 
 function setUrl(url){
 
-	history.pushState(null,null,'http://l/'+url);
+	history.pushState(null,null,'http://acruxray.github.io/'+url);
 
 	readUrl();
 }
 
 function readUrl(){
 
-	if(window.location=='http://l/'){
+	if(window.location=='http://acruxray.github.io/'){
 		$("[data-link]").parent().removeClass('active');
 		$('[data-link=control]').parent().addClass('active');
 		$('#info').load('base/control.html');

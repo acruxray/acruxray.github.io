@@ -164,7 +164,7 @@ function readUrl(){
 		var url=window.location.toString().split('/');
 		var name = url[url.length-1];
 
-		name.replace('#','');
+		name=name.replace('#','');
 
 		$("[data-link]").parent().removeClass('active');
 

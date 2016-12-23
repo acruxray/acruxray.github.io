@@ -121,23 +121,62 @@
 <script type="text/javascript" src="prism.js"></script>
 <script type="text/javascript">
 
+$(document).ready(function() {
+	readUrl();
+});
+
 $(".button-collapses").sideNav();
 
 $('.base').click(function(){
 	var name = $(this).data('link');
 
-	$("[data-link]").parent().removeClass('active');
+	// $("[data-link]").parent().removeClass('active');
 
-	$('[data-link='+name+']').parent().addClass('active');
+	// $('[data-link='+name+']').parent().addClass('active');
 
-	$('#info').load('base/'+name+'.html');
+	// $('#info').load('base/'+name+'.html');
 
-	setTimeout(function() { Prism.highlightAll() }, 300);
+	// setTimeout(function() { Prism.highlightAll() }, 300);
 
-	$('#main').css('display','none');
-	$('#info_b').css('display','block');
+	// $('#main').css('display','none');
+	// $('#info_b').css('display','block');
+
+	setUrl(name);
 
 });
+
+function setUrl(url){
+
+	history.pushState(null,null,'http://l/'+url);
+
+	readUrl();
+}
+
+function readUrl(){
+
+	if(window.location=='http://l/'){
+		$("[data-link]").parent().removeClass('active');
+		$('[data-link=control]').parent().addClass('active');
+		$('#info').load('base/control.html');
+		$('#main').css('display','none');
+		$('#info_b').css('display','block');
+	}else{
+		var url=window.location.toString().split('/');
+		var name = url[url.length-1];
+
+		$("[data-link]").parent().removeClass('active');
+
+		$('[data-link='+name+']').parent().addClass('active');
+
+		$('#info').load('base/'+name+'.html');
+
+		setTimeout(function() { Prism.highlightAll() }, 300);
+
+		$('#main').css('display','none');
+		$('#info_b').css('display','block');
+
+	}
+}
 
 </script>
 

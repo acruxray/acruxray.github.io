@@ -154,15 +154,14 @@ function setUrl(url){
 
 function readUrl(){
 
-	if(window.location=='http://acruxray.github.io/'){
+	if(window.location.hash==null){
 		$("[data-link]").parent().removeClass('active');
 		$('[data-link=server]').parent().addClass('active');
 		$('#info').load('base/server.html');
 		$('#main').css('display','none');
 		$('#info_b').css('display','block');
 	}else{
-		var url=window.location.toString().split('/');
-		var name = url[url.length-1];
+		var name = window.location.hash;
 
 		name=name.replace('#','');
 

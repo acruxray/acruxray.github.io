@@ -147,7 +147,7 @@ $('.base').click(function(){
 
 function setUrl(url){
 
-	history.pushState(null,null,'http://acruxray.github.io/'+url);
+	history.pushState(null,null,'http://acruxray.github.io/#'+url);
 
 	readUrl();
 }
@@ -163,6 +163,8 @@ function readUrl(){
 	}else{
 		var url=window.location.toString().split('/');
 		var name = url[url.length-1];
+
+		name.replace('#','');
 
 		$("[data-link]").parent().removeClass('active');
 

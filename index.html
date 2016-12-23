@@ -147,24 +147,18 @@ function readUrl(){
 		$("[data-link]").parent().removeClass('active');
 		$('[data-link=server]').parent().addClass('active');
 		$('#info').load('base/server.html');
+		setTimeout(function() { Prism.highlightAll() }, 300);
 		$('#main').css('display','none');
 		$('#info_b').css('display','block');
 	}else{
 		var name = window.location.hash;
-
 		name=name.replace('#','');
-
 		$("[data-link]").parent().removeClass('active');
-
 		$('[data-link='+name+']').parent().addClass('active');
-
 		$('#info').load('base/'+name+'.html');
-
 		setTimeout(function() { Prism.highlightAll() }, 300);
-
 		$('#main').css('display','none');
 		$('#info_b').css('display','block');
-
 	}
 }
 

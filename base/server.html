@@ -3,9 +3,9 @@
 <pre class="card-panel"><code class="language-bash"><xmp>
 #new.user.and.stop.root
 ssh root@SERVER_IP_ADDRESS
-adduser gacrux
+adduser username
 	pass:yoursecretpassword
-gpasswd -a gacrux sudo
+gpasswd -a username sudo
 nano /etc/ssh/sshd_config
 	change "PermitRootLogin yes" to "PermitRootLogin no" + ctrl-x + y + enter
 service ssh restart
@@ -27,22 +27,22 @@ sudo nano /etc/vsftpd.conf
 sudo service vsftpd restart
 
 #add.sites
-mkdir /var/www/getmeteo.me
-mkdir /var/www/getmeteo.me
-mkdir /home/gacrux/access-logs
+mkdir /var/www/site.com
+mkdir /var/www/site.com
+mkdir /home/username/access-logs
 
 sudo nano /etc/apache2/sites-available/000-default.conf
 sudo /etc/init.d/apache2 restart
-sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/api.getmeteo.me.conf
-sudo nano /etc/apache2/sites-available/api.getmeteo.me.conf
-sudo a2ensite api.getmeteo.me
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/api.site.com.conf
+sudo nano /etc/apache2/sites-available/api.site.com.conf
+sudo a2ensite api.site.com
 sudo service apache2 reload
 
 #ssl
 sudo nano /etc/apache2/sites-available/default-ssl.conf
-	add SSLCertificateFile	/var/www/w/sites/ssl/getmeteo.me/cert1.pem
-		SSLCertificateKeyFile /var/www/w/sites/ssl/getmeteo.me/privkey1.pem
-		SSLCertificateChainFile /var/www/w/sites/ssl/getmeteo.me/chain1.pem
+	add SSLCertificateFile	/var/www/sites/ssl/site.com/cert1.pem
+		SSLCertificateKeyFile /var/www/sites/ssl/site.com/privkey1.pem
+		SSLCertificateChainFile /var/www/sites/ssl/site.com/chain1.pem
 sudo a2enmod ssl
 sudo a2ensite default-ssl
 sudo service apache2 restart

@@ -136,7 +136,7 @@ $('.base').click(function(){
 });
 
 function setUrl(url){
-	history.pushState(null,null,'#'+url);
+	history.pushState(null,null,'#/'+url);
 	readUrl();
 }
 
@@ -151,7 +151,7 @@ function readUrl(){
 		$('#info_b').css('display','block');
 	}else{
 		var name = window.location.hash;
-		name=name.replace('#','');
+		name=name.replace('#/','');
 		$("[data-link]").parent().removeClass('active');
 		$('[data-link='+name+']').parent().addClass('active');
 		$('#info').load('base/'+name+'.html');

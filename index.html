@@ -36,7 +36,7 @@
 		bottom: 1.6rem;
 		right: 1rem;
 	}
-	.base{
+	.side-nav a{
 		cursor: pointer;
 	}
 	.holster{
@@ -65,38 +65,38 @@
 <ul id="slide-out" class="side-nav fixed">
 	<li><a class="subheader">Категории:</a></li>
 	<li><div class="divider"></div></li>
-	<li><a class="base" data-link="grub">Grub</a></li>
-	<li><a class="base" data-link="install">Установка и удаление программ</a></li>
-	<li><a class="base" data-link="server">Server setup</a></li>
-	<li><a class="base" data-link="apache">Apache</a></li>
-	<li><a class="base" data-link="ssl-apache">SSL для Apache</a></li>
-	<li><a class="base" data-link="nginx">Nxinx</a></li>
-	<li><a class="base" data-link="ssl-nginx">SSL для Nginx</a></li>
-	<li><a class="base" data-link="nginx-apache">Связка Nxinx+Apache+SSL</a></li>
-	<li><a class="base" data-link="dump">Дамп базы данных</a></li>
-	<li><a class="base" data-link="mysql">Работа с MySQL</a></li>
-	<li><a class="base" data-link="bin">Установка файлов .bin</a></li>
-	<li><a class="base" data-link="multimedia">Мультимедиа</a></li>
-	<li><a class="base" data-link="graphical">Графическая среда</a></li>
-	<li><a class="base" data-link="fonts">Шрифты</a></li>
-	<li><a class="base" data-link="md5">MD5 сумма</a></li>
-	<li><a class="base" data-link="formatting">Форматирование</a></li>
-	<li><a class="base" data-link="mail">Функция mail()</a></li>
-	<li><a class="base" data-link="cron">Cron</a></li>
-	<li><a class="base" data-link="screensaver">Скринсейвер</a></li>
-	<li><a class="base" data-link="energy-saving">Энергосбережение</a></li>
-	<li><a class="base" data-link="keyboard-layout">Раскладка клавиатуры</a></li>
-	<li><a class="base" data-link="video">Проблемы с видео</a></li>
-	<li><a class="base" data-link="deb">Установка .deb пакетов</a></li>
-	<li><a class="base" data-link="skype">Skype</a></li>
-	<li><a class="base" data-link="ftp">FTP</a></li>
-	<li><a class="base" data-link="symlink">Symlink</a></li>
-	<li><a class="base" data-link="backup">Backup</a></li>
-	<li><a class="base" data-link="ssh">Доступ по SSH</a></li>
-	<li><a class="base" data-link="dropbox">Проблемы с Dropbox</a></li>
-	<li><a class="base" data-link="desktop">Проблемы с Рабочим столом</a></li>
-	<li><a class="base" data-link="letsencrypt">LetsEncrypt</a></li>
-	<li><a class="base" data-link="performance-test">Тест производительности</a></li>
+	<li><a data-link="grub">Grub</a></li>
+	<li><a data-link="install">Установка и удаление программ</a></li>
+	<li><a data-link="server">Server setup</a></li>
+	<li><a data-link="apache">Apache</a></li>
+	<li><a data-link="ssl-apache">SSL для Apache</a></li>
+	<li><a data-link="nginx">Nxinx</a></li>
+	<li><a data-link="ssl-nginx">SSL для Nginx</a></li>
+	<li><a data-link="nginx-apache">Связка Nxinx+Apache+SSL</a></li>
+	<li><a data-link="dump">Дамп базы данных</a></li>
+	<li><a data-link="mysql">Работа с MySQL</a></li>
+	<li><a data-link="bin">Установка файлов .bin</a></li>
+	<li><a data-link="multimedia">Мультимедиа</a></li>
+	<li><a data-link="graphical">Графическая среда</a></li>
+	<li><a data-link="fonts">Шрифты</a></li>
+	<li><a data-link="md5">MD5 сумма</a></li>
+	<li><a data-link="formatting">Форматирование</a></li>
+	<li><a data-link="mail">Функция mail()</a></li>
+	<li><a data-link="cron">Cron</a></li>
+	<li><a data-link="screensaver">Скринсейвер</a></li>
+	<li><a data-link="energy-saving">Энергосбережение</a></li>
+	<li><a data-link="keyboard-layout">Раскладка клавиатуры</a></li>
+	<li><a data-link="video">Проблемы с видео</a></li>
+	<li><a data-link="deb">Установка .deb пакетов</a></li>
+	<li><a data-link="skype">Skype</a></li>
+	<li><a data-link="ftp">FTP</a></li>
+	<li><a data-link="symlink">Symlink</a></li>
+	<li><a data-link="backup">Backup</a></li>
+	<li><a data-link="ssh">Доступ по SSH</a></li>
+	<li><a data-link="dropbox">Проблемы с Dropbox</a></li>
+	<li><a data-link="desktop">Проблемы с Рабочим столом</a></li>
+	<li><a data-link="letsencrypt">LetsEncrypt</a></li>
+	<li><a data-link="performance-test">Тест производительности</a></li>
 </ul>
 <a data-activates="slide-out" class="button-collapses hide-on-large-only btn-floating btn-large waves-effect waves-light amber darken-2"><i class="material-icons">format_list_bulleted</i></a>
 
@@ -128,7 +128,7 @@ $(document).ready(function() {
 
 $(".button-collapses").sideNav();
 
-$('.base').click(function(){
+$('[data-link]').click(function(){
 	var name = $(this).data('link');
 
 	setUrl(name);

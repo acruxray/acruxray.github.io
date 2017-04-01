@@ -39,3 +39,9 @@ sudo service apache2 restart
 
 <pre class="card-panel"><code class="language-bash"><xmp>25 5 * * 4 /home/username/pro/letsencrypt/letsencrypt-auto renew >> /var/log/le-renew.log
 </xmp></code></pre>
+
+<h2 class="center-align">Если необходимо добавить поддомен</h2>
+
+<pre class="card-panel"><code class="language-bash"><xmp>certbot certonly --expand -d example.com -d www.example.com -d api.example.com
+# флаг --expand необходим, если не хотим отвечать на вопросы
+</xmp></code></pre>

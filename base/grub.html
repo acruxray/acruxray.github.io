@@ -1,9 +1,0 @@
-<h1 class="center-align">Работа с grub (загрузчик с выбором установленных операционных систем)</h1>
-<h2 class="center-align">Восстановление загрузчика Debian/Ubuntu</h2>
-
-<pre class="card-panel"><code class="language-bash"><xmp>grub-install /dev/sda
-mkdir /mnt/linux
-mount /dev/sda1 /mnt/linux
-chroot /mnt/linux
-grub-install /dev/sda
-</xmp></code></pre>

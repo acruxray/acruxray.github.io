@@ -1,169 +1,42 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Установка и настройнка сервера на VDS</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<meta name="description" content="Установка и настройнка сервера на VDS - руководство по основным вопросам">
-	<meta name="yandex-verification" content="350510bcfc12fa7c" />
-	<meta name="google-site-verification" content="b4rUrhG5e9WtQUVhOwIkeIvxlc8lRKOdbBC8bg0c5oM" />
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-	<link href="prism.css" rel="stylesheet">
-	<style type="text/css">
+	<title>Nazar Mozol. Supported projects.</title>
+	<link rel="stylesheet" href="https://acruxray.github.io/newage/css/newage.min.css">
+	<style>
 
-	.valign{
-		width: 100%;
+	h1, h5 {
+		font-weight: 300;
 	}
 
-	html{
-		font-size: 16px;
-	}
-
-	body{
-		background: #fafafa;
-	}
-	h1{
-		font-size: 1.5rem;
-	}
-	h2{
-		font-size: 1.3rem;
-	}
-	h3{
-		font-size: 1.1rem;
-	}
-	.button-collapses{
-		position: fixed;
-		bottom: 1.6rem;
-		right: 1rem;
-	}
-	.side-nav a{
-		cursor: pointer;
-	}
-	.holster{
-		height: 100%;
-	}
-
-	#info_b{
-		display: none;
-	}
-	
-
-	header, main, footer {
-		padding-left: 300px;
-	}
-
-	@media only screen and (max-width : 992px) {
-		header, main, footer {
-			padding-left: 0;
-		}
+	.composite .text {
+		padding: 2rem 0 1rem;
 	}
 
 	</style>
 </head>
 <body>
-
-<ul id="slide-out" class="side-nav fixed">
-	<li><a class="subheader">Категории:</a></li>
-	<li><div class="divider"></div></li>
-	<li><a data-link="grub">Grub</a></li>
-	<li><a data-link="install">Установка и удаление программ</a></li>
-	<li><a data-link="server">Server setup</a></li>
-	<li><a data-link="apache">Apache</a></li>
-	<li><a data-link="ssl-apache">SSL для Apache</a></li>
-	<li><a data-link="nginx">Nxinx</a></li>
-	<li><a data-link="ssl-nginx">SSL для Nginx</a></li>
-	<li><a data-link="nginx-apache">Связка Nxinx+Apache+SSL</a></li>
-	<li><a data-link="dump">Дамп базы данных</a></li>
-	<li><a data-link="mysql">Работа с MySQL</a></li>
-	<li><a data-link="bin">Установка файлов .bin</a></li>
-	<li><a data-link="multimedia">Мультимедиа</a></li>
-	<li><a data-link="graphical">Графическая среда</a></li>
-	<li><a data-link="fonts">Шрифты</a></li>
-	<li><a data-link="md5">MD5 сумма</a></li>
-	<li><a data-link="formatting">Форматирование</a></li>
-	<li><a data-link="mail">Функция mail()</a></li>
-	<li><a data-link="cron">Cron</a></li>
-	<li><a data-link="screensaver">Скринсейвер</a></li>
-	<li><a data-link="energy-saving">Энергосбережение</a></li>
-	<li><a data-link="keyboard-layout">Раскладка клавиатуры</a></li>
-	<li><a data-link="video">Проблемы с видео</a></li>
-	<li><a data-link="deb">Установка .deb пакетов</a></li>
-	<li><a data-link="skype">Skype</a></li>
-	<li><a data-link="ftp">FTP</a></li>
-	<li><a data-link="symlink">Symlink</a></li>
-	<li><a data-link="backup">Backup</a></li>
-	<li><a data-link="ssh">Доступ по SSH</a></li>
-	<li><a data-link="dropbox">Проблемы с Dropbox</a></li>
-	<li><a data-link="desktop">Проблемы с Рабочим столом</a></li>
-	<li><a data-link="letsencrypt">LetsEncrypt</a></li>
-	<li><a data-link="performance-test">Тест производительности</a></li>
-</ul>
-<a data-activates="slide-out" class="button-collapses hide-on-large-only btn-floating btn-large waves-effect waves-light amber darken-2"><i class="material-icons">format_list_bulleted</i></a>
-
-<header></header>
-
-<main>
-<div id="main" class="holster center-align valign-wrapper">
-	<div class="valign">
-		<h1><i class="material-icons" style="font-size:3rem;vertical-align:middle;">code</i> Acruxray snippets</h1>
-	</div>
-</div>
-
-<div id="info_b" class="row">
-	<div id="info" class="col s12 m10 l10 offset-l1 offset-m1"></div>
-</div>
-
-<footer></footer>
-
-</main>
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-<script type="text/javascript" src="prism.js"></script>
-<script type="text/javascript">
-
-$(document).ready(function() {
-	readUrl();
-});
-
-$(".button-collapses").sideNav();
-
-$('[data-link]').click(function(){
-	var name = $(this).data('link');
-
-	setUrl(name);
-
-});
-
-function setUrl(url){
-	history.pushState(null,null,'#/'+url);
-	readUrl();
-}
-
-function readUrl(){
-
-	if(window.location.hash==''){
-		$("[data-link]").parent().removeClass('active');
-		$('[data-link=server]').parent().addClass('active');
-		$('#info').load('base/server.html');
-		setTimeout(function() { Prism.highlightAll() }, 300);
-		$('#main').css('display','none');
-		$('#info_b').css('display','block');
-	}else{
-		var name = window.location.hash;
-		name=name.replace('#/','');
-		$("[data-link]").parent().removeClass('active');
-		$('[data-link='+name+']').parent().addClass('active');
-		$('#info').load('base/'+name+'.html');
-		setTimeout(function() { Prism.highlightAll() }, 300);
-		$('#main').css('display','none');
-		$('#info_b').css('display','block');
-	}
-}
-
-</script>
-
-
-
+	<main class="container-vertical">
+		<div class="container small">
+			<h1>Supported projects</h1>
+			<ul class="list">
+				<li class="composite">
+					<span class="text">
+						<h5><a href="https://getmeteo.me">GetMeteo.me</a></h5>
+						Your personal local weather forecast.<br>
+						<i class="blue-grey-text">End of support: March 2018</i>
+					</span>
+				</li>
+				<li class="composite">
+					<span class="text">
+						<h5><a href="https://acruxray.github.io/newage">NewAge CSS framework</a></h5>
+						NewAge is a small css framework based on principles of material design.
+					</span>
+				</li>
+			</ul>
+		</div>
+	</main>
 </body>
 </html>
